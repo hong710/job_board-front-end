@@ -5,10 +5,23 @@
 
 @layer base{
   body {
-    @apply font-primary
+    @apply font-primary bg-gray-100
   }
 
+  .bg-custom {
+    @apply bg-gradient-to-r from-[#0A5EC0] to-[#022384] 
+  }
+  .mycontainer {
+    @apply px-6 sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1140px] mx-auto
+  }
 
+  .submit-btn {
+    @apply w-full px-6 py-2.5 bg-blue-600 text-white font-medium   ease-in-out
+    text-xs leading-tight uppercase rounded shadow-md transition duration-150
+    hover:bg-blue-700 hover:shadow-lg
+    focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
+    active:bg-blue-800 active:shadow-lg
+  }
 
   .form-style {
     @apply form-control block w-full px-3 py-1.5 text-base font-normal 
@@ -16,7 +29,4 @@
       rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white 
     focus:border-blue-600 focus:outline-none
   }
-
-
-
 }
