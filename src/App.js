@@ -8,6 +8,7 @@ function App() {
   return (
     <BrowserRouter>
       <JobProvider>
+        
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/create" element={<CreateJob />} />

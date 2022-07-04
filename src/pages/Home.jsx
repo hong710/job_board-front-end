@@ -9,7 +9,7 @@ function Home() {
   const {filterJobs} = useContext(JobContext);
   return (
    <>
-    <Header /> 
+    <Header />
     <SearchBar />
     <div className="px-6">
 

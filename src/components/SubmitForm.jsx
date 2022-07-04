@@ -1,9 +1,22 @@
-import React, {useState} from 'react'
 import {useFormik} from "formik";
-
+import { useState } from "react";
+import * as Yup from "yup";
 function SubmitForm() {
+
+    const [status, setStatus] = useState()
+    const [data, setData] = useState("")
     const formik =useFormik({
         initialValues:{client:"",poc:"",poc_email:"",role:"",urgency:"",quantity:"",skills:""},
+        validationSchema: Yup.object({
+            client:Yup.string().required("Client name is required."),
+            poc: Yup.string().required("Poc name is required."),
+            poc_email: Yup.string().email("Invalid email.").required("Poc email is required."),
+            role: Yup.string().required("Role is required."),
+            urgency: Yup.string().required("urgency is required."),
+            quantity: Yup.number().required("Quantity is required.").positive("number has to greater than zero."),
+            skills: Yup.string().required("Skills is required.")        
+        }), 
+
         onSubmit:(values)=>{
             fetch('http://45.33.17.193:8000/jobs',{
                 method: 'POST',
@@ -12,13 +25,24 @@ function SubmitForm() {
                 },
                 body: JSON.stringify(values),
             })
-            .then((r)=>r.json())
-            .then((newData)=>console.log(newData))
-        }
-    });    
+            .then((res)=> {
+                setStatus(res.status)
+                return res.json()
+            })
+            .then((data)=>setData(data))
+            formik.resetForm();
+            }
+        });    
 
     return (        
         <div className="block p-6 rounded-lg shadow-lg bg-white">
+            {status===201? 
+            <h2 className="bg-teal-200 p-3 text-center rounded-xl">
+                {data.role} role was successfully created"
+            </h2> 
+            :null
+            }
+            {console.log (status, data)}
             <form onSubmit={formik.handleSubmit}>
                 <div className='grid grid-cols-2 gap-4'>
                     <div className="mb-6">
@@ -28,8 +52,14 @@ function SubmitForm() {
                             name="client"
                             placeholder="Client name"
                             onChange = {formik.handleChange}
+                            onBlur = {formik.handleBlur}
                             value = {formik.values.client}
                         />
+                        {
+                        formik.touched.client &&formik.errors.client?
+                            <p className="text-rose-600 text-sm" >{formik.errors.client}</p>:
+                            null 
+                        }
                     </div>
                     <div className="mb-6">
                         <label className="">POC</label>
@@ -39,7 +69,13 @@ function SubmitForm() {
                             placeholder="POC" 
                             value = {formik.values.poc}
                             onChange = {formik.handleChange}
+                            onBlur = {formik.handleBlur}
                         />
+                        {
+                        formik.touched.poc &&formik.errors.poc?
+                            <p className="text-rose-600 text-sm" >{formik.errors.poc}</p>:
+                            null 
+                        }
                     </div>               
                     <div className="mb-6 col-span-2">
                         <label className="">POC Email</label>
@@ -49,7 +85,13 @@ function SubmitForm() {
                             placeholder="Email address" 
                             value = {formik.values.poc_email}
                             onChange = {formik.handleChange}
+                            onBlur = {formik.handleBlur}
                         />
+                        {
+                        formik.touched.poc_email &&formik.errors.poc_email?
+                            <p className="text-rose-600 text-sm" >{formik.errors.poc_email}</p>:
+                            null 
+                        }
                     </div>
                     <div className="mb-6">
                         <label className="">Role</label>
@@ -59,7 +101,13 @@ function SubmitForm() {
                             placeholder="Role" 
                             value = {formik.values.role}
                             onChange = {formik.handleChange}
+                            onBlur = {formik.handleBlur}
                         />
+                        {
+                        formik.touched.role &&formik.errors.role?
+                            <p className="text-rose-600 text-sm" >{formik.errors.role}</p>:
+                            null 
+                        }
                     </div>
 
                     <div className="mb-6">
@@ -70,12 +118,18 @@ function SubmitForm() {
                             name="urgency"
                             value={formik.values.urgency}
                             onChange={formik.handleChange}
+                            onBlur = {formik.handleBlur}
                         >
                             <option value="" disabled hidden>Select level</option>
                             <option value="low">Low</option>
                             <option value="mid" >Medium</option>
                             <option value="high" >High</option>
                         </select>
+                        {
+                        formik.touched.urgency &&formik.errors.urgency?
+                            <p className="text-rose-600 text-sm" >{formik.errors.urgency}</p>:
+                            null 
+                        }
                     </div>
                 
                     <div className="mb-6">
@@ -87,20 +141,32 @@ function SubmitForm() {
                             placeholder="Quantity" 
                             value = {formik.values.quantity}
                             onChange = {formik.handleChange}
-
+                            onBlur = {formik.handleBlur}
                         />
+                        {
+                        formik.touched.quantity &&formik.errors.quantity?
+                            <p className="text-rose-600 text-sm" >{formik.errors.quantity}</p>:
+                            null 
+                        }
                     </div>
 
                     <div className="mb-6">
-                        <label className="">Skill Needed</label>
+                        <label className="">Skill Needed
+                            <span className='text-sm text-gray-600'> (use comma to separate each skill)</span>
+                        </label>
                         <input type="text" className="form-style" 
                             id="skills"
                             name='skills'                            
                             placeholder="Skills" 
                             value = {formik.values.skills}
                             onChange = {formik.handleChange}
-
+                            onBlur = {formik.handleBlur}
                         />
+                        {
+                        formik.touched.skills &&formik.errors.skills?
+                            <p className="text-rose-600 text-sm" >{formik.errors.skills}</p>:
+                            null 
+                        }
                     </div>
                 </div>
                 <button type="submit" className="submit-btn">Add job</button>
