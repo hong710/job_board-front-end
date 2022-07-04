@@ -9,7 +9,7 @@ export const JobProvider = ({children}) =>{
     const [message, setMessage] = useState("")
 
     useEffect(() =>{
-        fetch('http://localhost:8000/jobs')
+        fetch('http://45.33.17.193:8000/jobs')
             .then(res => res.json())
             .then(data => {
                 setFilterJobs(data)
