@@ -13,7 +13,7 @@ function Home() {
     <SearchBar />
     <div className="px-6">
 
-      <h1 className="text-center mt-4">{filterJobs?.length} jobs openings.</h1>
+      <h1 className="text-center mt-4">{filterJobs?.length} currently jobs opening.</h1>
 
       {filterJobs?.map(job => <JobCard key={job.id} job = {job} />)}
     </div>

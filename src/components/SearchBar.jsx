@@ -9,6 +9,7 @@ function SearchBar() {
     
     function handleSearch(jobs){
         if (search.trim() !==""){
+            setMessage("");
             if (option==="All"){
                 return jobs.filter(obj =>{
                     const searchStr= obj['client']+obj['role']+[obj['skills']];
@@ -26,6 +27,7 @@ function SearchBar() {
                     return jobClient.includes(search.toLowerCase())
                 })
             }
+            setMessage("");
         }else if (search.trim()==="")
             setMessage("Search box cannot be empty!");
         else
@@ -50,7 +52,7 @@ function SearchBar() {
                     <option value="Client" >Client</option>
                 </select>
                 <input type="text" 
-                        className="p-2 bg-transparent w-96 focus:outline-none" 
+                        className="p-2 bg-transparent w-50 sm:w-96 focus:outline-none" 
                         placeholder='Search..' 
                         value = {search}
                         onChange = {(e)=>setSeach(e.target.value)}

@@ -8,7 +8,7 @@ import hbo from '../asset/brand/hbo.png';
 import hcl from '../asset/brand/HCL.png';
 import next from '../asset/brand/next.png';
 
-function Header({text="Current Openings",size,hidden}) {
+function Header({text="Current Openings",hidden}) {
   return (
 
     <div>
@@ -24,8 +24,8 @@ function Header({text="Current Openings",size,hidden}) {
         </div>
         <div className={`absolute top-0 h-[calc(100vh-60vh)] w-full flex justify-center items-center`}>
             <div className='text-center text-white'>
-                <h1 className='text-6xl font-bold mb-10 tracking-wide' >Current Openings</h1>
-                <h2 className='text-xl tracking-wider'>Let’s create cool stuff together!</h2> 
+                <h1 className='text-4xl sm:text-6xl font-bold mb-10 tracking-wide' >{text}</h1>
+                <h2 className='sm:text-xl tracking-wider'>Let’s create cool stuff together!</h2> 
             </div>            
         </div>
 

@@ -42,10 +42,9 @@ function SubmitForm() {
             </h2> 
             :null
             }
-            {console.log (status, data)}
             <form onSubmit={formik.handleSubmit}>
                 <div className='grid grid-cols-2 gap-4'>
-                    <div className="mb-6">
+                    <div className="mb-6 col-span-2 sm:col-span-1">
                         <label className="">Client Name</label>
                         <input type="text" className="form-style" 
                             id="client"
@@ -61,7 +60,7 @@ function SubmitForm() {
                             null 
                         }
                     </div>
-                    <div className="mb-6">
+                    <div className="mb-6 col-span-2 sm:col-span-1">
                         <label className="">POC</label>
                         <input type="text" className="form-style" 
                             id="poc" 
@@ -93,7 +92,7 @@ function SubmitForm() {
                             null 
                         }
                     </div>
-                    <div className="mb-6">
+                    <div className="mb-6 col-span-2 sm:col-span-1">
                         <label className="">Role</label>
                         <input type="text" className="form-style" 
                             id="role" 
@@ -110,7 +109,7 @@ function SubmitForm() {
                         }
                     </div>
 
-                    <div className="mb-6">
+                    <div className="mb-6 col-span-2 sm:col-span-1">
                         <label className="">Urgency</label>
                         <select type="select" 
                             className="form-style" 
@@ -132,7 +131,7 @@ function SubmitForm() {
                         }
                     </div>
                 
-                    <div className="mb-6">
+                    <div className="mb-6 col-span-2 sm:col-span-1">
                         <label className="">Quantity</label>
                         <input type="number" className="form-style" 
                             id="quantity"
@@ -150,7 +149,7 @@ function SubmitForm() {
                         }
                     </div>
 
-                    <div className="mb-6">
+                    <div className="mb-6 col-span-2 sm:col-span-1">
                         <label className="">Skill Needed
                             <span className='text-sm text-gray-600'> (use comma to separate each skill)</span>
                         </label>
