@@ -10,7 +10,7 @@ function Detail() {
     const [job, setJob] = useState();
 
     useEffect(() =>{
-        fetch(`http://45.33.17.193:8000/jobs/${id}`)
+        fetch(`http://localhost:8000/jobs/${id}`)
             .then(res => res.json())
             .then(data => {
                 setJob(data)
