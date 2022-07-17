@@ -9,7 +9,7 @@ export const JobProvider = ({children}) =>{
     const [message, setMessage] = useState("")
 
     useEffect(() =>{
-        fetch('http://45.33.17.193:8000/jobs')
+        fetch(process.env.REACT_APP_BACKEND_SERVER)
             .then(res => res.json())
             .then(data => {
                 setFilterJobs(data)

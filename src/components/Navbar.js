@@ -5,7 +5,8 @@ function Navbar() {
   return (
     <div className=''>
         <div className=' py-8 px-4 sm:px-8 flex justify-between items-center'>
-            <Logo className="w-[150px] sm:w-[250px] "/>
+            {/* <Logo className="w-[150px] sm:w-[250px] "/> */}
+            <h1 className="text-white font-bold text-2xl">Job Board</h1>
             <div className='flex'>
                 <Link to='/' className='text-white text-xs sm:text-sm uppercase mr-6 tracking-wide'>Career</Link>
                 <Link to='/create'>

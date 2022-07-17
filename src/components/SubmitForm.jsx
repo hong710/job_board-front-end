@@ -18,7 +18,7 @@ function SubmitForm() {
         }), 
 
         onSubmit:(values)=>{
-            fetch('http://45.33.17.193:8000/jobs',{
+            fetch(process.env.REACT_APP_BACKEND_SERVER,{
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
